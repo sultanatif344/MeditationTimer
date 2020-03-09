@@ -74,8 +74,31 @@ export default {
                             this.hours-=1
                         }
                     }
-                }else{
-                    var audio=new Audio('./assets/alarm.wav');
+                }
+                else if(this.minutes>0){
+                    this.minutes-=1;
+                    if(this.minutes>=0&&this.seconds<=0){
+                        this.seconds=60;
+                        this.seconds-=1;
+                        if(this.hours>0&&this.minutes<=0){
+                            this.minutes=60;
+                            this.hours-=1
+                        }
+                    }
+                }
+                else if(this.hours>0){
+                this.hours-=1;
+                if(this.hours>=0&&this.minutes<=0){
+                    this.minutes=60;
+                    this.minutes-=1;
+                    if(this.minutes>=0&&this.seconds<=0){
+                        this.seconds=60;
+                        this.seconds-=1;
+                    }
+                }
+                }
+                else if(this.seconds<=0&&this.minutes<=0&&this.hours<=0){
+                    var audio=new Audio("alarm.mp3");
                     audio.play();
                 }
             }
